@@ -12,36 +12,34 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
 
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="<?= base_url('assets/js/jquery.mask.min.js') ?>" type="text/javascript"></script>
+
 
     
     <title>Aeronave</title>
 
   </head>
   <body>
+      <script type="text/javascript">
+        $(document).ready(function(){
+         $('.cpf').mask('000.000.000-00', {reverse: true});
+         $('.data').mask('00/00/0000');
+         $('.placeholder').mask("00/00/0000", {placeholder: "__/__/____"});
 
-    <div class="container">
-      <br><br>
-      <div class="row">
-        <div class="col">
-          <?php if(isset($_SESSION['msg_success'])){ ?>
-            <div class="alert alert-success" role="alert">
-              <?= $_SESSION['msg_success'] ?>
-              <?php  $_SESSION['msg_success'] = null ?>
-            </div>
-          <?php } ?>
+         var SPMaskBehavior = function (val) {
+            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+          },
+          spOptions = {
+            onKeyPress: function(val, e, field, options) {
+                field.mask(SPMaskBehavior.apply({}, arguments), options);
+              }
+          };
 
-
-          <?php if(isset($_SESSION['msg_errpr'])){ ?>
-            <div class="alert alert-danger" role="alert">
-              <?= $_SESSION['msg_errpr'] ?>
-              <?php  $_SESSION['msg_error'] = null ?>
-            </div>
-          <?php } ?>
-
+          $('.telefone').mask(SPMaskBehavior, spOptions);
+         });
+      </script>
 
 
-        </div>
 
-      </div>
-
-    </div>
+ 

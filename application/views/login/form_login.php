@@ -33,6 +33,7 @@ if (isset($_SESSION['msg_error'])) { ?>
 				    <span class="input-group-text" id="inputGroup-sizing-lg"><i class="fas fa-key"></i></span>
 				  </div>
 				  <input type="password" class="form-control" placeholder="Password" name="password" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" required>
+				  
 				</div><br>
 				
 				<button type="submit" class="btn btn-success btn-lg btn-block">Logar</button>

@@ -1,0 +1,28 @@
+body {
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+body .login {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 25px;
+  padding: 30px 20px 45px 20px;
+  box-shadow: #000 2px 2px 8px;
+}
+body .login h2 {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 45px;
+  padding-bottom: 35px;
+}
+body .form_cadastro {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 25px;
+  padding: 30px 20px 45px 20px;
+  box-shadow: #000 2px 2px 8px;
+}
+body .form_cadastro h2 {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 45px;
+  padding-bottom: 35px;
+}

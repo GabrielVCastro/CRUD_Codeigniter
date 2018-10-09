@@ -6,13 +6,13 @@ class Login extends CI_Controller {
 	
 	public function index(){
 		
-		$this->load->view("commons/header");
+		$this->load->view("commons/header_login");
 		$this->load->view("login/form_login");
 		$this->load->view("commons/footer");
 	}
 	public function form_login(){
 		
-		$this->load->view("commons/header");
+		$this->load->view("commons/header_login");
 		$this->load->view("login/form_login");
 		$this->load->view("commons/footer");
 	}
@@ -41,7 +41,7 @@ class Login extends CI_Controller {
 	}
 
 	public function form_cadastro(){
-		$this->load->view("commons/header");
+		$this->load->view("commons/header_login");
 		
 		$this->load->view("login/form_cadastro");
 		$this->load->view("commons/footer");
@@ -57,7 +57,7 @@ class Login extends CI_Controller {
 
 		$usuario = $this->login->logar($email, $password);
 		if ($usuario) {
-			$_SESSION['msg_success'] = "Usuário logado com sucesso!";
+			
 			$_SESSION['logado'] = $usuario;
 			header("Location:".base_url("index.php/Painel/"));
 		}else{
