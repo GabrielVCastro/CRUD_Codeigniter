@@ -11,3 +11,7 @@ body form h2 {
     width: 100%;
   }
 }
+.alert p {
+  text-align: center;
+  margin: 0px;
+}

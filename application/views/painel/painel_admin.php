@@ -29,7 +29,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 	    <li class="nav-item ">
-	        <a class="nav-link" href="#">Início</a>
+	        <a class="nav-link" href="<?= base_url("index.php/Painel/") ?>">Início</a>
 	    </li>
 	    &emsp;
 	    <li class="nav-item">
@@ -41,11 +41,11 @@
 	    </li>
 	  	 &emsp;
 	    <li class="nav-item">
-	      	<a href="" class="btn btn-outline-info" href="#">Aeronave</a>
+	      	<a  class="btn btn-outline-info" href="<?= base_url('index.php/Aeronave/') ?>">Aeronave</a>
 	    </li>
 	     &emsp;
 		<li class="nav-item">
-	      	<a href="" class="btn btn-outline-info" href="#">Missão</a>
+	      	<a class="btn btn-outline-info" href="<?= base_url('index.php/Missao/') ?>">Missão</a>
 	    </li>
 	     &emsp;		
 		<li class="nav-item">

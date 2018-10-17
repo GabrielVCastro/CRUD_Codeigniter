@@ -1,4 +1,4 @@
-
+<?php if ((isset($_SESSION['logado'])) && ($_SESSION['logado']!="")){ ?>
 
 
 
@@ -10,6 +10,10 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="<?= base_url("index.php/Painel/") ?>">Início</a>
+      </li>
+      &emsp; 
       <li class="nav-item ">
         <a class="btn btn-outline-success" href="<?= base_url('index.php/Piloto/form_cadastro') ?>">Cadastrar</a>
       </li>
@@ -58,6 +62,7 @@ if (isset($_SESSION['msg_error'])) { ?>
   $_SESSION['msg_error'] = null;
 
 } ?>
+
 <div class="table-responsive">
   <table class="table table-dark table-hover">
     <thead>
@@ -76,7 +81,9 @@ if (isset($_SESSION['msg_error'])) { ?>
 
       </tr>
     </thead>
+  
     <tbody>
+
   <?php foreach ($pilotos as  $piloto) { ?>
       <tr>
         <td><?= $piloto->id ?></td>
@@ -98,3 +105,19 @@ if (isset($_SESSION['msg_error'])) { ?>
     </tbody>
   </table>
 </div>
+   <?php if(count($pilotos)==0){ ?>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="alert alert-danger" role="alert">
+              <p><?= "Nenhum piloto foi cadastrado no momento!" ?></p>
+            </div>
+          </div>
+        </div>
+      </div>  
+   <?php } ?>
+<?php }else{  
+  $_SESSION['msg_error'] = "Faça o login antes de acessar o painel administrativo.";  
+  header("Location:".base_url("index.php/Login/"));
+
+} ?>

@@ -1,18 +1,29 @@
 body {
+  background: url('../imagem/nave_login.jpg') no-repeat;
   padding-top: 50px;
   padding-bottom: 30px;
 }
 body .login {
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 0.2px solid rgba(255, 255, 255, 0.3);
   border-radius: 25px;
   padding: 30px 20px 45px 20px;
-  box-shadow: #000 2px 2px 8px;
+  box-shadow: #fff 2px 2px 8px;
+  background-color: rgba(0, 0, 0, 0.36);
 }
-body .login h2 {
+body .login h1 {
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 45px;
-  padding-bottom: 35px;
+}
+body .login span {
+  background-color: rgba(0, 0, 0, 0.67);
+}
+body .login input {
+  background-color: rgba(0, 0, 0, 0.67);
+  color: #ffffff;
+}
+body .login .input-group > .custom-select:not(:first-child),
+body .login .input-group > .form-control:not(:first-child) {
+  background-color: rgba(0, 0, 0, 0.67);
+  color: white;
 }
 body .form_cadastro {
   border: 1px solid rgba(0, 0, 0, 0.3);

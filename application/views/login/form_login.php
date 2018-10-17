@@ -20,7 +20,7 @@ if (isset($_SESSION['msg_error'])) { ?>
 	<div class="row">
 		<div class="offset-xl-3 col-xl-6 offset-lg-3 col-lg-6 offset-md-2 col-md-8 col-sm-12 col-12">
 			<form action="<?= base_url('index.php/Login/logar/') ?>" method="POST" class="login">
-				<h2>Login</h2>
+				<h1><img src="<?php echo base_url('assets/imagem/logo.png')  ?> " alt=""></h1>
 				
 				<div class="input-group input-group-lg">
 				  <div class="input-group-prepend">

@@ -1,3 +1,6 @@
+<?php if ((isset($_SESSION['logado'])) && ($_SESSION['logado']!="")){ ?>
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -98,3 +101,9 @@ $id = $edit[0]->id;
     </div>
   </div>
 </div>
+
+<?php }else{  
+  $_SESSION['msg_error'] = "Faça o login antes de acessar o painel administrativo.";  
+  header("Location:".base_url("index.php/Login/"));
+
+} ?>
