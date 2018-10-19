@@ -161,14 +161,20 @@ class Tecnico extends CI_Controller {
 
 	}
 
-	public function excluir($idtecnico){
+	public function excluir($idtecnico, $status){
+		
+
 		$this->load->model("Tecnico_model", "tecnico");
 		
-		if ($this->tecnico->excluir($idtecnico)) {
-			$_SESSION['msg_success'] = "Técnico excluido com sucesso!";
+		$tecnico = array(
+			"status" => $status
+		);
+		
+		if ($this->tecnico->excluir($idtecnico, $tecnico)) {
+			$_SESSION['msg_success'] = " Status alterado com sucesso!!";
 
 		}else{
-			$_SESSION['msg_error'] = "erro ao excluir";
+			$_SESSION['msg_error'] = "Erro ao tentar alterar os status";
 
 		}
 		header("Location: ".base_url("index.php/Tecnico/"));

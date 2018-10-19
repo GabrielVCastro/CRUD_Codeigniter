@@ -1,7 +1,7 @@
 <?php if ((isset($_SESSION['logado'])) && ($_SESSION['logado']!="")){ ?>
 
-<?php if ((count($pilotos)==0) || (count($aeronaves)==0)) {
-  $_SESSION['msg_aviso'] = "Cadastre Piloto, Copiloto e Aeronave antes das missões!";
+<?php if ((count($tecnicos)==0) || (count($aeronaves)==0)) {
+  $_SESSION['msg_aviso'] = "Cadastre Técnico e Aeronave antes de fazer manutenção!";
   header("Location: ".base_url("index.php/Painel/"));
 
   }else{
@@ -21,7 +21,7 @@
       </li>
       &emsp; 
       <li class="nav-item ">
-        <a class="btn btn-outline-success" href="<?= base_url('index.php/Missao/form_cadastro') ?>">Cadastrar</a>
+        <a class="btn btn-outline-success" href="<?= base_url('index.php/Manutencao/form_cadastro') ?>">Cadastrar</a>
       </li>
       
      
@@ -67,7 +67,7 @@ if (isset($_SESSION['msg_error'])) { ?>
 <?php 
   $_SESSION['msg_error'] = null;
 
-} ?>
+}  ?>
 
 
 
@@ -75,56 +75,55 @@ if (isset($_SESSION['msg_error'])) { ?>
   <table class="table table-dark table-hover">
     <thead>
       <tr>
-        <th><a href="<?php echo base_url("index.php/Missao/index/id")  ?>">N°</a></th>
-        <th><a href="<?php echo base_url("index.php/Missao/index/data_partida")  ?>">Data de Partida</a></th>
-        <th><a href="<?php echo base_url("index.php/Missao/index/data_chegada")  ?>">Data de Chegada</a></th>
-        <th><a href="<?php echo base_url("index.php/Missao/index/tipo")  ?>">Tipo</a></th>
-        <th><a href="<?php echo base_url("index.php/Missao/index/id_piloto")  ?>">Piloto</a></th>
-        <th><a href="<?php echo base_url("index.php/Missao/index/id_copiloto")  ?> ">Copiloto</a></th>
-        <th><a href=" <?php echo base_url("index.php/Missao/index/id_aeronave")  ?>">Aeronave</a></th>
+        <th><a href="<?php echo base_url("index.php/Manutencao/index/id")  ?>">N°</a></th>
+        <th><a href="<?php echo base_url("index.php/Manutencao/index/id_tecnico")  ?>">Técnico</a></th>
+        <th><a href="<?php echo base_url("index.php/Manutencao/index/id_aeronave")  ?>">Aeronave</a></th>
+        <th><a href="<?php echo base_url("index.php/Manutencao/index/tipo")  ?>">Tipo</a></th>
+        <th><a href="<?php echo base_url("index.php/Manutencao/index/data_hora")  ?>">Data</a></th>
+        
         <th><i class="fas fa-user-edit"></i></th>
         <th><i class="fas fa-trash-alt"></i></th>
       </tr>
     </thead>
     <tbody>
       <?php 
-       foreach ($missoes as $missao) { ?>
-        <tr>
-          <td><?= $missao->id ?></td>
-          <td><?= $missao->data_partida ?></td>
-          <td><?= $missao->data_chegada ?></td>
-          <td><?= $missao->tipo ?></td>
-          <td><?= $missao->piloto ?></td>
-          <td><?= $missao->co_piloto ?></td>
-          <td><?php if($missao->tipo_aeronave=="P"){
-                  echo "Passageiro";
-              }else{
-                  echo "Carga";
-              } ?>     
-          </td>
-          <td><a href="<?php echo base_url("index.php/Missao/form_editar/$missao->id")  ?>"><i class="far fa-edit"></i></a></td>
-          <td><a href="<?php echo base_url("index.php/Missao/excluir/$missao->id")  ?>"><i class="fas fa-times-circle"></i></a></td>
+        foreach ($manutencoes as $manutencao) { ?>
+          <tr>
+            <td><?=$manutencao->id?></td>
+            <td><?=$manutencao->nome?></td>
+            <td><?=$manutencao->prefixo?></td>
+            <td><?php if($manutencao->tipo=="P"){
+                echo "Preventiva";
+            }else{
+                echo "Corretiva";
+            } ?></td>
+            <td><?=$manutencao->data_hora?></td>
+            <td><a href="<?php echo base_url("index.php/Manutencao/form_editar/$manutencao->id")  ?>"><i class="far fa-edit"></i></a></td>
+            <td><a href="<?php echo base_url("index.php/Manutencao/excluir/$manutencao->id")  ?>"><i class="fas fa-times-circle"></i></a></td>
+          </tr> 
+       <?php }
 
-        </tr>
-      <?php } ?>
+
+      ?>
+      
     </tbody>
   </table>
 </div>
-
-
 <?php 
- if (count($missoes)==0) { ?>
+ if (count($manutencoes)==0) { ?>
    <div class="container">
     <div class="row">
       <div class="col">
         <div class="alert alert-danger" role="alert">
-          <p>Nenhuma Missão foi cadastrada ainda!</p>
+          <p>Nenhuma manutenção foi cadastrada ainda!</p>
         </div>
       </div>
     </div>
   </div>
   <?php }
 ?>
+
+
 
 <?php }else{  
   $_SESSION['msg_error'] = "Faça o login antes de acessar o painel administrativo.";  

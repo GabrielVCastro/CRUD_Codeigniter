@@ -52,14 +52,18 @@ class Aeronave extends CI_Controller {
 
 	}
 
-	public function excluir($idaeronave){
+	public function excluir($idaeronave,$status){
 		$this->load->model("Aeronave_model", "aeronave");
+
+		$aeronave = array(
+			"status" => $status
+		);
 		
-		if ($this->aeronave->excluir($idaeronave)) {
-			$_SESSION['msg_success'] = "Aeronave excluido com sucesso!";
+		if ($this->aeronave->excluir($idaeronave, $aeronave)) {
+			$_SESSION['msg_success'] = "Status alterado com sucesso!";
 
 		}else{
-			$_SESSION['msg_error'] = "erro ao excluir";
+			$_SESSION['msg_error'] = "Erro ao tentar alterar os status.";
 
 		}
 		header("Location: ".base_url("index.php/Aeronave/"));

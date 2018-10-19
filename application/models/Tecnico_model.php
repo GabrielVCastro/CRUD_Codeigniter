@@ -12,9 +12,9 @@ class Tecnico_model extends CI_Model {
 	 	return $this->db->insert("tecnico", $tecnico);	
 	}
 
-  public function excluir($idtecnico){
+  public function excluir($idtecnico, $tecnico){
     $this->db->where("id", $idtecnico);
-     return $this->db->delete("tecnico");
+     return $this->db->update('tecnico', $tecnico);
   }
 
   public function form_editar($id){

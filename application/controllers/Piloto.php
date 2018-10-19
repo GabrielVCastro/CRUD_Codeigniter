@@ -9,8 +9,12 @@ class Piloto extends CI_Controller {
 		$pilotos = $this->piloto->listar($ordem);
 		$pilotos = $pilotos->result();
 
+		$missoes = $this->piloto->listar_missao();
+		$missoes = $missoes->result();
+
 		$params = array(
-			"pilotos" => $pilotos
+			"pilotos" => $pilotos,
+			"missoes" => $missoes
 		);
 
 
@@ -103,14 +107,19 @@ class Piloto extends CI_Controller {
 
 	}
 
-	public function excluir($idpiloto){
+	public function excluir($idpiloto, $status){
 		$this->load->model("Piloto_model", "piloto");
+
+		$piloto = array(
+			"status" => $status
+
+		);
 		
-		if ($this->piloto->excluir($idpiloto)) {
-			$_SESSION['msg_success'] = "Piloto excluido com sucesso!";
+		if ($this->piloto->excluir($idpiloto, $piloto)) {
+			$_SESSION['msg_success'] = "Status alterado  com sucesso!";
 
 		}else{
-			$_SESSION['msg_error'] = "erro ao excluir";
+			$_SESSION['msg_error'] = "Erro ao tentar alterar os status.";
 
 		}
 		header("Location: ".base_url("index.php/Piloto/"));
@@ -167,7 +176,8 @@ class Piloto extends CI_Controller {
 			"ultimo_exame" => $ultimo_exame,
 			"telefone" => $telefone3,
 			"endereco" => $post['endereco'],
-			"sexo" => $post['sexo']
+			"sexo" => $post['sexo'],
+			"status" => "A"
 
 		);
 

@@ -6,15 +6,18 @@ class Piloto_model extends CI_Model {
     $this->db->order_by($ordem, 'asc');
     return $this->db->select("*")->from("piloto")->get();
   }
+  public function listar_missao(){
+    return $this->db->select("*")->from("missao")->get();
+  }
 
 	public function cadastrar($piloto){
 	 	
 	 	return $this->db->insert("piloto", $piloto);	
 	}
 
-  public function excluir($idpiloto){
+  public function excluir($idpiloto, $piloto){
     $this->db->where("id", $idpiloto);
-     return $this->db->delete("piloto");
+    return $this->db->update('piloto', $piloto);
   }
 
   public function form_editar($id){

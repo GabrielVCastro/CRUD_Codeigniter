@@ -77,7 +77,7 @@ if (isset($_SESSION['msg_error'])) { ?>
         <th><a href="<?php echo base_url("index.php/Piloto/index/telefone")  ?>">Telefone</a></th>
         <th><a href="<?php echo base_url("index.php/Piloto/index/endereco")  ?>">Endereço</a></th>
         <th><i class="fas fa-user-edit"></i></th>
-        <th><i class="fas fa-trash-alt"></i></th>
+        <th>Ativar/Desativar</th>
 
       </tr>
     </thead>
@@ -98,7 +98,18 @@ if (isset($_SESSION['msg_error'])) { ?>
         <td class="telefone"><?= $piloto->telefone ?></td>
         <td><?= $piloto->endereco ?></td>
         <td><a href="<?php echo base_url("index.php/Piloto/form_editar/$piloto->id")  ?>"><i class="far fa-edit"></i></a></td>
-        <td><a href="<?php echo base_url("index.php/Piloto/excluir/$piloto->id")  ?>"><i class="fas fa-times-circle"></i></a></td>
+        <td>
+             <?php 
+                if ($piloto->status=="A") { ?>
+                  <a href="<?php echo base_url("index.php/Piloto/excluir/$piloto->id/D") ?>" class="badge badge-danger" ><?= "Desativar" ?></a> 
+                <?php }else{ ?>
+                  <a href="<?php echo base_url("index.php/Piloto/excluir/$piloto->id/A") ?>" class="badge badge-success" ><?= "Ativar" ?></a>
+                <?php }
+              ?>
+        </td>
+
+
+        
       </tr>
     
   <?php } ?>
@@ -115,7 +126,7 @@ if (isset($_SESSION['msg_error'])) { ?>
           </div>
         </div>
       </div>  
-   <?php } ?>
+   <?php }  ?>
 <?php }else{  
   $_SESSION['msg_error'] = "Faça o login antes de acessar o painel administrativo.";  
   header("Location:".base_url("index.php/Login/"));

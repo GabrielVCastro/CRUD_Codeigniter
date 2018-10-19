@@ -12,9 +12,10 @@ class Aeronave_model extends CI_Model {
 	 	return $this->db->insert("aeronave", $aeronave);	
 	}
 
-  public function excluir($idaeronave){
+  public function excluir($idaeronave, $aeronave){
     $this->db->where("id", $idaeronave);
-     return $this->db->delete("aeronave");
+     return $this->db->update('aeronave', $aeronave);
+
   }
 
   public function form_editar($id){

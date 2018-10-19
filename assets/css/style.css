@@ -1,3 +1,7 @@
+body {
+  background: url('../imagem/nave_login.jpg') no-repeat;
+  background-size: cover;
+}
 body .navbar {
   margin-bottom: 45px;
 }

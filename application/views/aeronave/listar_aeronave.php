@@ -77,7 +77,7 @@ if (isset($_SESSION['msg_error'])) { ?>
         <th><a href="<?php echo base_url("index.php/Aeronave/index/horas_voo")  ?>">Horas de Vôo</a></th>
         <th><a href="<?php echo base_url("index.php/Aeronave/index/ano_fabricacao")  ?>">Ano de Fabricação</a></th>
         <th><i class="fas fa-user-edit"></i></th>
-        <th><i class="fas fa-trash-alt"></i></th>
+        <th>Ativar/Desativar</th>
       </tr>
     </thead>
     <tbody>
@@ -94,19 +94,37 @@ if (isset($_SESSION['msg_error'])) { ?>
               <td><?= $aeronave->horas_voo ?></td>
               <td><?= $aeronave->ano_fabricacao ?></td>
                <td><a href="<?php echo base_url("index.php/Aeronave/form_editar/$aeronave->id")  ?>"><i class="far fa-edit"></i></a></td>
-            <td><a href="<?php echo base_url("index.php/Aeronave/excluir/$aeronave->id")  ?>"><i class="fas fa-times-circle"></i></a></td>
+            <td>
+              <?php 
+                  if ($aeronave->status=="A") { ?>
+                    <a href="<?php echo base_url("index.php/Aeronave/excluir/$aeronave->id/D") ?>" class="badge badge-danger" ><?= "Desativar" ?></a> 
+                  <?php }else{ ?>
+                    <a href="<?php echo base_url("index.php/Aeronave/excluir/$aeronave->id/A") ?>" class="badge badge-success" ><?= "Ativar" ?></a>
+                  <?php }
+                ?>
+            </td>
 
             </tr>
 
 
-          <?php }        
-
-
+          <?php }       
       ?>
     </tbody>
   </table>
 </div>
-
+<?php 
+ if (count($aeronaves)==0) { ?>
+   <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="alert alert-danger" role="alert">
+          <p>Nenhuma Aeronave foi cadastrada ainda!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php }
+?>
 
 
 

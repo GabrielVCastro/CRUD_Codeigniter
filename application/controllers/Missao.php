@@ -7,9 +7,19 @@ class  Missao extends CI_Controller {
 		$this->load->model("Missao_model", "missao");
 		
 		$missoes = $this->missao->listar($ordem);
+
+		$pilotos = $this->missao->listar_piloto();
+		$pilotos = $pilotos->result();
+
+	
+
+		$aeronaves = $this->missao->listar_aeronave();
+		$aeronaves = $aeronaves->result();
 		
 		$params = array(
-			"missoes" => $missoes
+			"missoes" => $missoes,
+			"pilotos" => $pilotos,
+			"aeronaves" => $aeronaves
 		);
 
 	
@@ -113,8 +123,7 @@ class  Missao extends CI_Controller {
 			"id_copiloto" => $post['id_copiloto'],
 			"id_aeronave" => $post['id_aeronave']
 		);
-			var_dump($missao);
-		
+			
 		if ($this->missao->editar($id, $missao)) {
 			$_SESSION['msg_success'] = "Missão editada com sucesso!";
 

@@ -78,7 +78,7 @@ if (isset($_SESSION['msg_error'])) { ?>
             <th><a href="<?php echo base_url("index.php/Tecnico/index/telefone")  ?>">Telefone</a></th>
             <th><a href="<?php echo base_url("index.php/Tecnico/index/endereco")  ?>">Endereço</a></th>
             <th><i class="fas fa-user-edit"></i></th>
-            <th><i class="fas fa-trash-alt"></i></th>
+            <th>Ativar/Desativar</th>
           </tr>
         </thead>
         <tbody>
@@ -96,7 +96,15 @@ if (isset($_SESSION['msg_error'])) { ?>
               <td class="telefone"><?= $tecnico->telefone ?></td>
               <td><?= $tecnico->endereco ?></td>
               <td><a href="<?php echo base_url("index.php/Tecnico/form_editar/$tecnico->id")  ?>"><i class="far fa-edit"></i></a></td>
-              <td><a href="<?php echo base_url("index.php/Tecnico/excluir/$tecnico->id") ?>"><i class="fas fa-times-circle"></i></a></td>
+              <td>
+                <?php 
+                  if ($tecnico->status=="A") { ?>
+                    <a href="<?php echo base_url("index.php/Tecnico/excluir/$tecnico->id/D") ?>" class="badge badge-danger" ><?= "Desativar" ?></a> 
+                  <?php }else{ ?>
+                    <a href="<?php echo base_url("index.php/Tecnico/excluir/$tecnico->id/A") ?>" class="badge badge-success" ><?= "Ativar" ?></a>
+                  <?php }
+                ?>
+              </td>
             </tr>
     
   <?php } ?>
@@ -105,7 +113,19 @@ if (isset($_SESSION['msg_error'])) { ?>
 </div>
 
 
-
+<?php 
+ if (count($tecnicos)==0) { ?>
+   <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="alert alert-danger" role="alert">
+          <p>Nenhum Técnico foi cadastrado ainda!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php }
+?>
 
 
 <?php }else{  
